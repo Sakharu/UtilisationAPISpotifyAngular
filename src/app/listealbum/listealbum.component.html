@@ -1,0 +1,20 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<form id="form" #idform="ngForm">
+  <mat-form-field id="chercher">
+    <input required type="texte" name="recherche" id="recherche" ngModel matInput placeholder="Chercher un album...">
+  </mat-form-field>
+  <button type="submit" id="btnrecherche" (click)="chercherAlbums(idform.value.recherche)" [disabled]="!idform.valid"> <i class="fa fa-search"></i></button>
+</form>
+
+<mat-grid-list cols="3" >
+  <mat-grid-tile *ngFor="let element of albums let i=index">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title id="titre"> {{albums[i]["name"]}}</mat-card-title>
+      </mat-card-header>
+      <a [routerLink]="['/album/',element.id]">
+        <img src='{{ albums[i]["images"][1]["url"] }}'>
+      </a> 
+    </mat-card>
+  </mat-grid-tile>
+</mat-grid-list>

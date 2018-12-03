@@ -1,0 +1,11 @@
+.imgcover
+{
+    max-width: 300px;
+    max-height: 300px;
+}
+.titlecard
+{
+    text-transform: capitalize;
+    text-align: center;
+    font-size: 1.3em;
+}

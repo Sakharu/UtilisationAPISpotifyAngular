@@ -1,1 +1,41 @@
 /* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { margin: 0; font-family: 'Roboto', sans-serif; }
+
+#chercher
+{
+    margin-left:20%;
+    margin-top:10%;
+    font-size:2em;
+    width:25%;
+    color:#1976d2;
+}
+#recherche
+{
+    margin:auto;
+    
+}
+  
+#btnrecherche {
+    width: 80px;
+    padding: 10px;
+    background: #2196F3;
+    color: white;
+    font-size: 17px;
+    border: 1px solid grey;
+    border-left: none; 
+    cursor: pointer;
+
+  }
+  
+  #btnrecherche :hover {
+    background: #0b7dda;
+  }
+  
+  /* Clear floats */
+  #btnrecherche::after {
+    content: "";
+    clear: both;
+    display: table;
+  }

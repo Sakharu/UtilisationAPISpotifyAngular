@@ -1,0 +1,24 @@
+<p  id="titleplaylist" *ngIf="details && details.tracks"> {{details.name}} </p>
+  <mat-grid-list cols="3"  >
+    <mat-grid-tile *ngFor="let element of details.tracks.items let i=index">
+      <mat-card>
+        <mat-card-header>
+          <mat-card-title id="titlesong">{{element.track.name}}</mat-card-title>
+        </mat-card-header>
+        <img src="{{element.track.album.images[1].url}}"> <br/>
+        <audio *ngIf="element.track.preview_url" id=”AudioSong” controls src="{{element.track.preview_url}}">pas
+          supporté</audio>
+          <button id="btndelete" (click)="deleteTrack(details.id,element.track.id)">
+            <mat-icon>delete</mat-icon>
+          </button>
+        <br>
+        <form #idform="ngForm" (ngSubmit)="changeOrderTrack(details.id,i,idform.value.newnum); idform.resetForm();">
+          <br>
+          <input id="newnum" type="number" required ngModel name="newnum" matInput placeholder="Nouvelle place">
+          <input type="submit" [disabled]="!idform.valid" value="Changer">
+        </form>
+        <br>
+
+      </mat-card>
+    </mat-grid-tile>
+  </mat-grid-list>

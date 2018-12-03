@@ -1,0 +1,52 @@
+<h2>Liste des playlists</h2>
+<p id="uneplayliste" *ngIf="playlists">
+  <mat-grid-list cols="3">
+    <mat-grid-tile *ngFor="let element of playlists.items let i=index">
+      <mat-card>
+        <mat-card-header>
+          <p id="titleplaylist">{{element.name}}</p>
+        </mat-card-header>
+        <a [routerLink]="['/detailplaylist/',element.id]">
+          <img *ngIf="element.images.length!=0" src="{{element.images[0].url}}" width="200" height="200">
+        </a>
+        <br>
+        <p>{{element.description}}</p>
+        <p *ngIf="element.collaborative">Collaborative</p>
+        <p *ngIf="!element.collaborative">Non collaborative</p>
+        <p *ngIf="element.public">Publique</p>
+        <p *ngIf="!element.public">Privée</p>
+
+        <p *ngIf="element.tracks.total==0" style="color:green;">Vide</p>
+        <a [routerLink]="['/changerplaylist/',element.id]">
+          <mat-icon> border_color</mat-icon>
+        </a>
+      </mat-card>
+    </mat-grid-tile>
+  </mat-grid-list>
+</p>
+
+
+<!--formulaire de nouvelle playlist-->
+<h2>Créer une playlist</h2>
+<mat-card>
+  <form #idform="ngForm" (ngSubmit)="addPlaylist(idform.value.nom,idform.value.description,idform.value.public,idform.value.collaborative); idform.resetForm();">
+    <mat-form-field>
+      <input required id="nom" ngModel name="nom" matInput placeholder="Nom">
+    </mat-form-field>
+    <mat-form-field>
+      <input required id="description" ngModel name="description" matInput placeholder="description">
+    </mat-form-field>
+    <br>
+    <mat-select placeholder="Visibilité" ngModel matInput id="public" name="public">
+      <mat-option value="publique">Publique</mat-option>
+      <mat-option value="privée">Privée</mat-option>
+    </mat-select>
+    <br> <br>
+    <mat-select placeholder="Collaborative" ngModel matInput id="collaborative" name="collaborative">
+        <mat-option value="Collaborative">Collaborative</mat-option>
+        <mat-option value="Non collaborative">Non collaborative</mat-option>
+    </mat-select>
+    <br> <br>
+    <input type="submit" [disabled]="!idform.valid" value="créer">
+  </form>
+</mat-card>

@@ -1,0 +1,20 @@
+<div class="imgcentre">
+  <h1 *ngIf="details">{{details.artists[0].name}} - {{details.name}} </h1>
+  <img *ngIf="details" src='{{ details.images[1]["url"] }}'>
+</div>
+<mat-grid-list cols="3" >
+  <mat-grid-tile *ngFor="let element of details.tracks.items let i=index">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title id="titre"> {{element.name}}</mat-card-title>
+      </mat-card-header>
+      <audio *ngIf="element.preview_url" id="AudioSong" controls src="{{element.preview_url}}">pas supporté</audio>
+      <mat-select placeholder="choisir la playlist" [(ngModel)]="selectedOption" matInput id="listeplaylist" name="listeplaylist">
+        <mat-option *ngFor="let element2 of playlists.items" [value]="element2.id" id="element2.name">{{element2.name}}</mat-option>
+      </mat-select>
+      <button (click)="addTrackToPlaylist(element.id,selectedOption)">
+        <mat-icon>playlist_add</mat-icon>
+      </button> 
+    </mat-card>
+  </mat-grid-tile>
+</mat-grid-list>

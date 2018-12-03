@@ -1,0 +1,41 @@
+<!--formulaire de nouvelle playlist-->
+<h2>Modifier une playlist</h2>
+<mat-card>
+  <form #idform="ngForm" (ngSubmit)="modifierPlaylist(idform.value.nom,idform.value.description,idform.value.public,idform.value.collaborative); idform.resetForm();">
+    <mat-form-field>
+      <input id="nom" [value]="playlist.name" ngModel name="nom" matInput placeholder="Nom">
+    </mat-form-field>
+    <mat-form-field>
+      <input id="description" ngModel [value]="playlist.description" name="description" matInput placeholder="description">
+    </mat-form-field>
+    <br>
+    <span *ngIf="playlist.public">
+      <mat-select required [(value)]="publique" ngModel matInput id="public" name="public">
+        <mat-option value="publique">Publique</mat-option>
+        <mat-option value="privée">Privée</mat-option>
+      </mat-select>
+    </span>
+    <span *ngIf="!playlist.public">
+      <mat-select required [(value)]="privee" ngModel matInput id="public" name="public">
+        <mat-option value="publique">Publique</mat-option>
+        <mat-option value="privée">Privée</mat-option>
+      </mat-select>
+    </span>
+    <br> <br>
+
+    <span *ngIf="playlist.collaborative">
+      <mat-select required ngModel matInput [(value)]="nocollabo" id="collaborative" name="collaborative">
+        <mat-option value="Collaborative">Collaborative</mat-option>
+        <mat-option value="Non collaborative">Non collaborative</mat-option>
+      </mat-select>
+    </span>
+    <span *ngIf="!playlist.collaborative">
+      <mat-select required ngModel [(value)]="collabo" matInput id="collaborative" name="collaborative">
+        <mat-option value="Collaborative">Collaborative</mat-option>
+        <mat-option value="Non collaborative">Non collaborative</mat-option>
+      </mat-select>
+    </span>
+    <br> <br>
+    <input type="submit" [disabled]="!idform.valid" value="Modifier">
+  </form>
+</mat-card>

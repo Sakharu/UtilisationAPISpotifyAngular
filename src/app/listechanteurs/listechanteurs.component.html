@@ -1,0 +1,19 @@
+<form #idform="ngForm">
+    <mat-form-field id="chercher">
+      <input id="recherche" required type="texte" name="recherche" id="recherche" ngModel matInput placeholder="Chercher un chanteur...">
+    </mat-form-field>
+    <button type="submit" id="btnrecherche" (click)="chercherChanteur(idform.value.recherche)" [disabled]="!idform.valid" value="Valider"> <i class="fa fa-search"></i></button>
+  </form>
+  
+  <mat-grid-list cols="3" >
+    <mat-grid-tile *ngFor ="let element of chanteurs let i=index">
+      <mat-card>
+        <mat-card-header>
+          <mat-card-title class="titlecard"> {{chanteurs[i]["name"]}} </mat-card-title>
+        </mat-card-header>
+        <img class="imgcover" *ngIf="chanteurs[i].images.length!=0" src="{{chanteurs[i].images[1].url}}">
+      </mat-card>
+    </mat-grid-tile>
+  </mat-grid-list>
+  
+  
